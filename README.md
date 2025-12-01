@@ -52,9 +52,9 @@ All IPs communicate through the standard **32-bit Wishbone Bus**, with GPIO and 
 ```bash
 git clone https://github.com/Juan-AquinoH/secure_logger_controller.git
 cd secure_logger_controller
-
+---
 2. **Prepare Your Environment:**
-
+---
 ```bash
 make setup
 ```
