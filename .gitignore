@@ -69,3 +69,4 @@ signoff/**/metrics.csv
 signoff/**/cmds.log
 temp_secure_logger/
 temp_secure_logger/
+verilog/dv/caravel/
