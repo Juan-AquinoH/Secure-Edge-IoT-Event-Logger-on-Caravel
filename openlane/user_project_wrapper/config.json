@@ -6,6 +6,8 @@
     "dir::../../verilog/rtl/secure_top.v",
     "dir::../../verilog/rtl/secure_logger_controller.v",
     "dir::../../verilog/rtl/logger_wb_controller.v",
+    "dir::../../verilog/rtl/aes_xor.v",
+    "dir::../../verilog/rtl/crc8.v",
     "dir::../../verilog/rtl/re_ram_nvm.v",
     "dir::../../verilog/rtl/fifo_buffer.v"
 
@@ -122,4 +124,3 @@
 
   "meta": { "version": 2 }
 }
-
