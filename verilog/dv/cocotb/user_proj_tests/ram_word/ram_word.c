@@ -1,76 +1,77 @@
-
-// Comment From Here - Test 1
-
-#define USER_ADDR_SPACE_C_HEADER_FILE  // TODO disable using the other file until tag is updated and https://github.com/efabless/caravel_mgmt_soc_litex/pull/137 is merged
+#define USER_ADDR_SPACE_C_HEADER_FILE
 
 #include <firmware_apis.h>
 #include <custom_user_space.h>
-#include <ram_info.h>
 #include <stdint.h>
 
-// Wait for 'cycles' CPU clock cycles using RISC-V cycle CSR
+// Simple CPU delay
 static inline void wait_cycles(uint32_t cycles)
 {
-    // Volatile asm prevents the loop from being optimized away.
     for (uint32_t i = 0; i < cycles; i++) {
         __asm__ volatile ("nop");
     }
 }
 
-uint32_t read_wishbone(uint32_t);
+#define LOGGER_ADDR 0x31000000
+#define NEURO_ADDR 0x30000004
+#define NEURO_ADDR_2 0x34000004
 
-void main(){
-    // Enable management GPIOs as output to use as indicators for finishing configuration  
+uint32_t read_wishbone(uint32_t addr)
+{
+    return *(volatile uint32_t *)addr;
+}
+
+void main()
+{
+    // --- Basic Caravel setup ---
     ManagmentGpio_outputEnable();
     ManagmentGpio_write(0);
+
     GPIOs_configureAll(GPIO_MODE_USER_STD_OUT_MONITORED);
-    GPIOs_loadConfigs(); // load the configuration 
-    User_enableIF(1); // this necessary when reading or writing between wishbone and user project if interface isn't enabled no ack would be recieve and the command will be stuck
+    GPIOs_loadConfigs();
+
+    User_enableIF(1); // enable Wishbone interface
+
+    // Signal cocotb that firmware finished setup
     ManagmentGpio_write(1);
-    
-    volatile int shifting;
-    volatile int data_used;
-    int start_address[3] = {0, (RAM_NUM_WORDS*4 /10), (RAM_NUM_WORDS*9 /10)};
-    int end_address[3] = {(RAM_NUM_WORDS /10), (RAM_NUM_WORDS*5 /10), RAM_NUM_WORDS};
-    
-    // ---- Single Write + Single Read demo ----
-    volatile uint32_t addr = 0x30000000;
-    volatile uint32_t wdata = 0xC21000FF; // [29:25] - Row Address, [24:20] - Column Address, [7:0] Data
+
+    // ---- SINGLE WISHBONE WRITE ----
+    volatile uint32_t addr = LOGGER_ADDR;
+    volatile uint32_t addr_neuro = NEURO_ADDR;
+    volatile uint32_t addr_neuro_2 = NEURO_ADDR_2;
+    volatile uint32_t wdata = 0xC21000FF;
     volatile uint32_t wdata1 = 0x42100000;
-    volatile uint32_t wdata2 = 0xCA400000;
-    volatile uint32_t wdata3 = 0x4A400000;
+    volatile uint32_t wdata_logger = 0x15F34E1F;  // start_logging pulse
     
     // Performing Write Operation
-    *((volatile uint32_t *) addr) = wdata;
-    *((volatile uint32_t *) addr) = wdata1;
+    *((volatile uint32_t *) addr_neuro) = wdata;
+    *((volatile uint32_t *) addr_neuro) = wdata1;
     
     wait_cycles(300); // Delay
     
-    // Performing Read Operation
-    uint32_t temp = read_wishbone(addr);
+    // // Performing Read Operation
+    uint32_t temp = read_wishbone(addr_neuro);
     
-    *((volatile uint32_t *) addr) = wdata2;
-    *((volatile uint32_t *) addr) = wdata3;
-    *((volatile uint32_t *) addr) = wdata1;
+    wait_cycles(50); // Delay
+
+    *((volatile uint32_t *)addr) = wdata_logger;
     
-    wait_cycles(900); // Delay
+    wait_cycles(20); // Delay
     
-    uint32_t temp1 = read_wishbone(addr);
-    uint32_t temp2 = read_wishbone(addr);
+    *((volatile uint32_t *)addr) = 0x1234567F;
     
+    wait_cycles(20); // Delay
+    
+    *((volatile uint32_t *)addr) = 0x15F34E14;
+
+    // small delay to let hardware react
+    wait_cycles(200);
+
+    // Optional: read back (not needed, but included for reference)
+    volatile uint32_t status = read_wishbone(addr);
+
+    // Test finished
     ManagmentGpio_write(0);
+
+    while(1); // stop CPU
 }
-
-static unsigned int lfsr = 0xACE1u;  // seed value
-
-int rand(void) {
-    // Simple LFSR-based RNG (XOR shift)
-    lfsr = (lfsr >> 1) ^ (-(lfsr & 1u) & 0xB400u);
-    return (int)(lfsr & 0xFF);  // Return 8-bit random number
-}
-
-uint32_t read_wishbone(uint32_t address)
-{
-    return *(volatile uint32_t *)address;
-}
-
