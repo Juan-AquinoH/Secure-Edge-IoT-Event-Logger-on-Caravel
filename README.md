@@ -50,7 +50,7 @@ All IPs communicate through the standard **32-bit Wishbone Bus**, with GPIO and 
 1. **Clone the Repository:**
 
 ```bash
-git clone https://github.com/Baavanes/secure_logger_controller.git
+git clone https://github.com/Juan-AquinoH/secure_logger_controller.git
 cd secure_logger_controller
 
 ```
