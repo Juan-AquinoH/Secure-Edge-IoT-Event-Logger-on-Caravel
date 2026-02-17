@@ -11,7 +11,14 @@
     "dir::../../verilog/rtl/re_ram_nvm.v",
     "dir::../../verilog/rtl/fifo_buffer.v",
     "dir::../../verilog/rtl/encryptor.v",
-    "dir::../../verilog/rtl/parity_checker.v"
+    "dir::../../verilog/rtl/parity_checker.v",
+    "dir::../../verilog/rtl/aes_sbox.v",
+    "dir::../../verilog/rtl/aes_key_expansion.v",
+    "dir::../../verilog/rtl/aes_round.v",
+    "dir::../../verilog/rtl/aes128_core.v"
+
+
+
   ],
 
 
@@ -56,9 +63,11 @@
 
   "GRT_REPAIR_ANTENNAS": true,
   "GRT_MAX_DIODE_INS_ITERS": 10,
-  "HEURISTIC_ANTENNA_THRESHOLD": 89,
   "GPL_CELL_PADDING": 2,
   "DPL_CELL_PADDING": 2,
+
+
+
 
 
 

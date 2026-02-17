@@ -22,4 +22,10 @@
 -v $(USER_PROJECT_VERILOG)/rtl/crc8.v
 -v $(USER_PROJECT_VERILOG)/rtl/re_ram_nvm.v
 -v $(USER_PROJECT_VERILOG)/rtl/fifo_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/parity_checker.v
+-v $(USER_PROJECT_VERILOG)/rtl/encryptor.v
+-v $(USER_PROJECT_VERILOG)/rtl/aes_round.v
+-v $(USER_PROJECT_VERILOG)/rtl/aes_key_expansion.v
+-v $(USER_PROJECT_VERILOG)/rtl/aes_sbox.v
+-v $(USER_PROJECT_VERILOG)/rtl/aes128_core.v
 -v $(USER_PROJECT_VERILOG)/../ip/Neuromorphic_X1_32x32/hdl/beh_model/Neuromorphic_X1_Beh.v
