@@ -428,3 +428,13 @@ $(clean-targets): clean-% :
 	rm -f ./mag/$*.mag
 	rm -f ./lef/$*.lef
 	rm -f ./maglef/*.maglef
+.PHONY: run-secure-logger-test
+run-secure-logger-test:
+	@echo "Ejecutando secure_logger_test con caravel_cocotb..."
+	@verilog/dv/venv-cocotb/bin/python3 -m caravel_cocotb -t secure_logger_test -sim RTL
+
+.PHONY: cocotb-verify-secure_logger-rtl
+cocotb-verify-secure_logger-rtl:
+	@echo "Ejecutando secure_logger_test con caravel_cocotb (desde verilog/dv/cocotb)..."
+	cd verilog/dv/cocotb && \
+	../venv-cocotb/bin/caravel_cocotb -t secure_logger_test -sim RTL

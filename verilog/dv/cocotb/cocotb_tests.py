@@ -1,3 +1,4 @@
 from user_proj_tests.ram_word.ram_word import ram_word
 from user_proj_tests.secure_test1_asserts.secure_test1_asserts import secure_test1_asserts
 from user_proj_tests.secure_test2_asserts.secure_test2_asserts import secure_test2_asserts
+from test_secure_logger import secure_logger_test

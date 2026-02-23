@@ -1,8 +1,8 @@
-CARAVEL_ROOT: /home/carlos/caravel_secure/caravel
-MCW_ROOT: /home/carlos/caravel_secure/mgmt_core_wrapper
-PDK: sky130
-PDK_ROOT: /home/carlos/caravel_secure/pdk_root/sky130
-USER_PROJECT_ROOT: /home/carlos/caravel_secure/caravel_user_neuromorphic_secure
+CARAVEL_ROOT: /home/enovo/proyectos/secure_logger_controller/caravel
+MCW_ROOT: /home/enovo/proyectos/secure_logger_controller/mgmt_core_wrapper
+PDK: sky130A
+PDK_ROOT: /home/enovo/proyectos/secure_logger_controller/dependencies/pdks
+USER_PROJECT_ROOT: /home/enovo/proyectos/secure_logger_controller
 caravan: false
 clk: 25
 emailto:

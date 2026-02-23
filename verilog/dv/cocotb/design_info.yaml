@@ -7,3 +7,19 @@ caravan: false
 clk: 25
 emailto:
 - null
+user_project_verilog:
+  - verilog/rtl/defines.v
+  - verilog/rtl/user_defines.v
+  - verilog/rtl/secure_top.v
+  - verilog/rtl/secure_logger_controller.v
+  - verilog/rtl/aes128_core.v
+  - verilog/rtl/aes_round.v
+  - verilog/rtl/aes_sbox.v
+  - verilog/rtl/aes_key_expansion.v  
+  - verilog/rtl/encryptor.v
+  - verilog/rtl/fifo_buffer.v
+  - verilog/rtl/parity_checker.v
+  - verilog/rtl/crc8.v
+  - verilog/rtl/re_ram_nvm.v
+
+toplevel: user_project_wrapper 
