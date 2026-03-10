@@ -441,3 +441,13 @@ $(cocotb-dv-targets-rtl): cocotb-verify-%-rtl:
 	
 $(cocotb-dv-targets-gl): cocotb-verify-%-gl:
 	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && $(PROJECT_ROOT)/venv-cocotb/bin/caravel_cocotb -t $* -sim GL)
+# Test Cocotb para secure_logger_controller
+COCOTB_TESTS := verilog/dv/cocotb
+
+.PHONY: cocotb-verify-secure_logger-rtl
+cocotb-verify-secure_logger-rtl:
+	$(CARAVEL_ROOT)/verilog/dv/cocotb/venv/bin/caravel_cocotb -t secure_logger_test -sim RTL
+
+.PHONY: cocotb-verify-secure_logger-gl
+cocotb-verify-secure_logger-gl:
+	$(CARAVEL_ROOT)/verilog/dv/cocotb/venv/bin/caravel_cocotb -t secure_logger_test -sim GL
