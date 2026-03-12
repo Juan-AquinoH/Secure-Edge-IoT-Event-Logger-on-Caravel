@@ -28,4 +28,6 @@
 -v $(USER_PROJECT_VERILOG)/rtl/aes_key_expansion.v
 -v $(USER_PROJECT_VERILOG)/rtl/aes_sbox.v
 -v $(USER_PROJECT_VERILOG)/rtl/aes128_core.v
+-v $(USER_PROJECT_VERILOG)/rtl/tmr_rdata_voter.v
+-v $(USER_PROJECT_VERILOG)/rtl/tmr_re_ram_nvm_wrapper.v
 -v $(USER_PROJECT_VERILOG)/../ip/Neuromorphic_X1_32x32/hdl/beh_model/Neuromorphic_X1_Beh.v
