@@ -3,7 +3,7 @@ Secure Logger Controller – ReRAM-Based Medical Event Logger
 **ChipFoundry BM Labs NVM Power-Up Design Contest Submission**  
 **Designer:** Juan Carlos Aquino Hernández
 **Institution:** Universidad Tecnológica de Nayarit (UTNAY)
-**Contributor Samarth Jainabout
+**Contributor** Samarth Jainabout
 ---
 
 ## Project Overview
