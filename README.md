@@ -149,6 +149,11 @@ On user interaction (NFC tap):
 - No cloud dependency required  
 
 ---
+##  pcb layout explaining how solar cell connects  the project  
+
+!![Perovskia_Solar_FPC](https://github.com/user-attachments/assets/b187f2a0-1f40-4930-83c2-6fc8196bf80c)
+
+
 
 ##  Final Product Story: Medical Wearable Logger
 
