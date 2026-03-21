@@ -154,11 +154,6 @@ On user interaction (NFC tap):
 !![Perovskia_Solar_FPC](https://github.com/user-attachments/assets/b187f2a0-1f40-4930-83c2-6fc8196bf80c)
 
 
-
-##  Final Product Story: Medical Wearable Logger
-
-
-!![secure_logger_customer_story_slide](https://github.com/user-attachments/assets/7fd3dc35-3350-41a3-98a9-f76038e1988c)
 **“The clinical memory inside every patch.”**
 
 Designed for devices where losing data is unacceptable.
@@ -171,8 +166,9 @@ The system preserves critical events such as:
 Even under:
 - Low battery  
 - Device resets  
-- Loss of connectivity  
-
+- Loss of connectivity
+    
+##  Final Product Story: Medical Wearable Logger
 ---
 !![secure_logger_customer_story_slide](https://github.com/user-attachments/assets/7fd3dc35-3350-41a3-98a9-f76038e1988c)
 ---
