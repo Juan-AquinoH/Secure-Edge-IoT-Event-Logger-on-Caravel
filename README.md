@@ -7,7 +7,7 @@ Name Project:Secure Logger Controller – ReRAM-Based Medical Event Logger
 
 **Institution:** Universidad Tecnológica de Nayarit (UTNAY)
 
-**Contributor:**  Samarth Jainabout
+**Contributor:**  Samarth Jainabout  
 ---
 
 ## Project Overview
