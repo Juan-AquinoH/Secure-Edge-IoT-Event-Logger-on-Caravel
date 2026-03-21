@@ -114,7 +114,131 @@ This design targets **medical wearables and edge devices** where:
 - Security and integrity are mandatory (encrypted event trail with CRC validation).  
 
 It is also suitable for **industrial safety black-box logging** and **ultra-low-power edge monitoring** in harsh environments.
+#  Secure Logger IP
 
+##  IP Description
+
+**Secure Logger IP** is an ultra-low-power, hardware-based event logging core designed for medical wearables and edge IoT systems operating under intermittent power and unreliable connectivity.
+
+It guarantees that **critical events are never lost**, preserving data across power failures, resets, and communication gaps.
+
+---
+
+##  Customer Story: Secure Adherence Cap
+
+![Secure Adherence Cap](docs/images/customer_facing_secure_adherence_cap_1.png)
+
+A familiar product that looks like a normal cap but behaves like a trusted dose tracker.
+
+After each use:
+- A local event is recorded
+- Data is stored in non-volatile memory
+- No continuous connectivity is required
+
+On user interaction (NFC tap):
+- Last dose taken  
+- Adherence history  
+- Freshness / storage status  
+
+###  Key Value
+
+- Data survives power loss  
+- Secure and tamper-proof history  
+- No cloud dependency required  
+
+---
+
+##  Final Product Story: Medical Wearable Logger
+
+![Secure Logger Customer Story](docs/images/secure_logger_customer_story_slide.png)
+
+**“The clinical memory inside every patch.”**
+
+Designed for devices where losing data is unacceptable.
+
+The system preserves critical events such as:
+- Arrhythmia episodes and symptom markers  
+- Glucose threshold crossings and alarms  
+- Respiratory deterioration flags  
+
+Even under:
+- Low battery  
+- Device resets  
+- Loss of connectivity  
+
+---
+
+##  Energy Strategy: Perovskite Solar Integration
+
+The device operates in real environments such as:
+- Medicine cabinets  
+- Bathrooms  
+- Indoor lighting conditions  
+
+###  Benefits
+
+- Printed perovskite solar cells conform to caps or wearable patches  
+- Continuous low-power energy harvesting  
+- Energy stored for short NFC communication bursts  
+
+###  Result
+
+- No always-on wireless required  
+- Maintenance-free operation  
+- Optimized for intermittent usage patterns  
+
+---
+
+##  IP Architecture
+
+- Event Capture Interface  
+- Secure Logging Controller  
+- NVM Interface (ReRAM)  
+- Cryptographic Validation Unit  
+- NFC Communication Interface  
+- Power Management Controller  
+
+---
+
+##  Ecosystem & Sponsors
+
+This project is developed within the **BM Labs / ChipFoundry ecosystem**, enabling rapid prototyping of secure, ultra-low-power silicon solutions.
+
+###  BM Labs / ChipFoundry
+
+- Platform for IP-to-silicon innovation  
+- Integration into Caravel-based SoCs  
+- Focus on NVM and secure edge architectures  
+- Supports design, validation, and tapeout readiness  
+
+###  Semiconductor Platform
+
+- Caravel / OpenLane flow  
+- Sky130 PDK compatibility  
+- RTL-to-GDS implementation  
+
+###  Energy Innovation Layer
+
+- Perovskite solar integration  
+- Flexible photovoltaic for wearables  
+
+---
+
+##  Use Case Summary
+
+| Feature                  | Value Delivered              |
+|--------------------------|-----------------------------|
+| Non-volatile logging     | No data loss                |
+| Secure encryption        | Trusted, auditable records  |
+| NFC interface            | Simple user interaction     |
+| Energy harvesting ready  | Battery independence        |
+| Event-driven design      | Ultra-low power operation   |
+
+---
+
+##  Tagline
+
+**Secure Logger IP → Never lose the moment that matters**
 ---
 
 ## Why This Design Wins
