@@ -126,7 +126,8 @@ It guarantees that **critical events are never lost**, preserving data across po
 
 ##  Customer Story: Secure Adherence Cap
 
-!![secure_logger_customer_story_slide](https://github.com/user-attachments/assets/7fd3dc35-3350-41a3-98a9-f76038e1988c)
+
+!![customer_facing_secure_adherence_cap (4)](https://github.com/user-attachments/assets/f4a2480d-6cf8-4012-881a-b97f233e0e41)
 
 
 A familiar product that looks like a normal cap but behaves like a trusted dose tracker.
@@ -151,9 +152,8 @@ On user interaction (NFC tap):
 
 ##  Final Product Story: Medical Wearable Logger
 
-!![customer_facing_secure_adherence_cap (4)](https://github.com/user-attachments/assets/f4a2480d-6cf8-4012-881a-b97f233e0e41)
 
-
+!![secure_logger_customer_story_slide](https://github.com/user-attachments/assets/7fd3dc35-3350-41a3-98a9-f76038e1988c)
 **“The clinical memory inside every patch.”**
 
 Designed for devices where losing data is unacceptable.
