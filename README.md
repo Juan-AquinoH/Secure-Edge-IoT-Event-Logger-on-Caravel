@@ -2,9 +2,16 @@
   <img src="docs/assets/sponsor_logos_header.png" alt="Perovskia and BM Labs" width="520">
 </p>
 
+<p align="center">
+  <a href="https://perovskia.solar/"><strong>Perovskia</strong></a> — custom printed perovskite solar cells for harvesting indoor and outdoor light in low-power devices.<br>
+  <a href="https://bmsemi.io/"><strong>BM Labs</strong></a> — neuromorphic and ReRAM-focused semiconductor IP for low-power edge and embedded systems.
+</p>
+
 # Secure Logger Controller – ReRAM‑Based Medical Event Logger
 
 **ChipFoundry BM Labs NVM Power‑Up Design Contest Submission**  
+**Designer:** Juan Carlos Aquino Hernández  
+**Institution:** Universidad Tecnológica de Nayarit (UTNAY)  
 Designed for the [ChipFoundry BM Labs application challenge](https://chipfoundry.io/challenges/application), this project implements a secure, low‑power medical event logger on the **Caravel** platform.  
 It combines BM Labs’ **Neuromorphic ReRAM NVM** with a custom secure logging controller to guarantee data persistence and integrity for critical medical events—even under unexpected power loss.
 
