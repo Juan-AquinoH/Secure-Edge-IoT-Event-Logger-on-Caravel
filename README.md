@@ -1,7 +1,7 @@
 # Secure Logger Controller – ReRAM‑Based Medical Event Logger
 
-**ChipFoundry BM Labs NVM Power‑Up Design Contest Submission**  
-Designed for the [ChipFoundry BM Labs application challenge](https://chipfoundry.io/challenges/application), this project implements a secure, low‑power medical event logger on the **Caravel** platform.  
+**ChipFoundry Application Challenge Submission**  
+Designed for the [ChipFoundry Application Challenge](https://chipfoundry.io/challenges/application), this project implements a secure, low‑power medical event logger on the **Caravel** platform.  
 It combines BM Labs’ **Neuromorphic ReRAM NVM** with a custom secure logging controller to guarantee data persistence and integrity for critical medical events—even under unexpected power loss.
 
 ---
@@ -164,7 +164,7 @@ Intermittent operation is enabled through printed **perovskite solar cells** tha
 
 * Neuromorphic ReRAM IP: [Neuromorphic X1 documentation](https://github.com/BMsemi/Neuromorphic_X1_32x32)
 * Caravel User Project and Wrapper: [Caravel user project docs](https://caravel-user-project.readthedocs.io)
-* NVM Power‑Up contest details: [ChipFoundry BM Labs NVM challenge](https://chipfoundry.io/challenges/bmlabs)
+* Application challenge details: [ChipFoundry Application Challenge](https://chipfoundry.io/challenges/application)
 
 ---
 
