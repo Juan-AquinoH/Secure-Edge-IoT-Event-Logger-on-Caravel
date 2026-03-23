@@ -61,6 +61,18 @@ Key platform blocks include:
 
 ---
 
+## Architecture
+![Arquitectura](https://github.com/user-attachments/assets/5bf1885d-a2a1-470f-8a1d-809667c5cd96)
+
+
+
+System-level block diagram showing integration of:
+
+- **Caravel Management SoC (RISC-V core)** providing Wishbone control, debug and system management.  
+- **Secure Logger Controller (CRC-8 + AES)** validating sensor events, encrypting payloads, and generating status/IRQ.  
+- **Neuromorphic ReRAM NVM (BM Labs Neuromorphic_X1_wb)** used as non-volatile storage and analog in-memory compute macro, connected via 32-bit Wishbone and analog bias pins.
+
+All IPs communicate through the standard **32-bit Wishbone Bus**, with GPIO and Logic Analyzer lines used to inject sensor events, CRC references, power-fail test signals, and to observe encrypted outputs and status flags.
 ## Getting Started
 
 ### 1. Clone the Repository
