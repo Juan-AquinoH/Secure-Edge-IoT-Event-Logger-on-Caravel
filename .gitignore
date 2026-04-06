@@ -76,3 +76,10 @@ venv-cocotb/
 .venv/
 venv-cocotb/
 mag/user_project_wrapper.mag
+# Local EDA artifacts
+runs/
+lvs/
+.cf/
+check/
+hierarchy/
+read_verilog/

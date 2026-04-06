@@ -1,25 +1,9 @@
-CARAVEL_ROOT: /home/enovo/proyectos/secure_logger_controller/caravel
-MCW_ROOT: /home/enovo/proyectos/secure_logger_controller/mgmt_core_wrapper
+CARAVEL_ROOT: /home/enovo/proyectos/Secure-Edge-IoT-Event-Logger-on-Caravel/caravel
+MCW_ROOT: /home/enovo/proyectos/Secure-Edge-IoT-Event-Logger-on-Caravel/mgmt_core_wrapper
 PDK: sky130A
-PDK_ROOT: /home/enovo/proyectos/secure_logger_controller/dependencies/pdks
-USER_PROJECT_ROOT: /home/enovo/proyectos/secure_logger_controller
+PDK_ROOT: /home/enovo/proyectos/Secure-Edge-IoT-Event-Logger-on-Caravel/dependencies/pdks
+USER_PROJECT_ROOT: /home/enovo/proyectos/Secure-Edge-IoT-Event-Logger-on-Caravel
 caravan: false
 clk: 25
 emailto:
 - null
-user_project_verilog:
-  - verilog/rtl/defines.v
-  - verilog/rtl/user_defines.v
-  - verilog/rtl/secure_top.v
-  - verilog/rtl/secure_logger_controller.v
-  - verilog/rtl/aes128_core.v
-  - verilog/rtl/aes_round.v
-  - verilog/rtl/aes_sbox.v
-  - verilog/rtl/aes_key_expansion.v  
-  - verilog/rtl/encryptor.v
-  - verilog/rtl/fifo_buffer.v
-  - verilog/rtl/parity_checker.v
-  - verilog/rtl/crc8.v
-  - verilog/rtl/re_ram_nvm.v
-
-toplevel: user_project_wrapper 

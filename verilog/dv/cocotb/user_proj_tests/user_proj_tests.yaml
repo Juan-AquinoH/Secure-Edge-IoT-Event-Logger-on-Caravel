@@ -19,3 +19,4 @@ includes:
     - ram_word/ram_word.yaml
     - secure_test1_asserts/secure_test1_asserts.yaml
     - secure_test2_asserts/secure_test2_asserts.yaml
+    - secure_logger_la/secure_logger_la.yaml
