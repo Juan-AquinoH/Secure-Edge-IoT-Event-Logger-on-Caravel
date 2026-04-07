@@ -83,3 +83,11 @@ lvs/
 check/
 hierarchy/
 read_verilog/
+# OpenLane generated files (ignorar artefactos, no configs)
+openlane/*/runs/
+openlane/*/logs/
+openlane/*/reports/
+openlane/*/tmp/
+openlane/*/pdn/
+openlane/*/results/
+openlane/*/*.gds
