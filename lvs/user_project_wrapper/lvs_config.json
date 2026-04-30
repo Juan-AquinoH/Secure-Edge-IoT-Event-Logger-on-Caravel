@@ -6,5 +6,8 @@
   "lvs_config": {
     "run_dir": "lvs/user_project_wrapper",
     "max_errors": 100
-  }
+  },
+  "LVS_VERILOG_FILES": [
+    "verilog/gl/user_project_wrapper.v"
+  ]
 }
