@@ -1,0 +1,161 @@
+// SPDX-FileCopyrightText: 2020 Efabless Corporation
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// SPDX-License-Identifier: Apache-2.0
+
+ `default_nettype none
+/*
+ *-------------------------------------------------------------
+ *
+ * user_project_wrapper
+ *
+ * This wrapper enumerates all of the pins available to the
+ * user for the user project.
+ *
+ * An example user project is provided in this wrapper.  The
+ * example should be removed and replaced with the actual
+ * user project.
+ *
+ *-------------------------------------------------------------
+ */
+`default_nettype none
+`define MPRJ_IO_PADS 38
+
+module user_project_wrapper #(
+    parameter BITS = 32
+) (
+`ifdef USE_POWER_PINS
+    inout vdda1,
+    inout vdda2,
+    inout vssa1,
+    inout vssa2,
+    inout vccd1,
+    inout vccd2,
+    inout vssd1,
+    inout vssd2,
+`endif
+
+    // Wishbone Slave
+    input wb_clk_i,
+    input wb_rst_i,
+    input wbs_stb_i,
+    input wbs_cyc_i,
+    input wbs_we_i,
+    input [3:0] wbs_sel_i,
+    input [31:0] wbs_dat_i,
+    input [31:0] wbs_adr_i,
+    output reg wbs_ack_o,
+    output reg [31:0] wbs_dat_o,
+
+    // Logic Analyzer
+    input  [127:0] la_data_in,
+     output [127:0] la_data_out,
+    input  [127:0] la_oenb,
+
+    // IOs
+    input  [`MPRJ_IO_PADS-1:0] io_in,
+    output [`MPRJ_IO_PADS-1:0] io_out,
+    output [`MPRJ_IO_PADS-1:0] io_oeb,
+
+    // Analog
+    inout [`MPRJ_IO_PADS-10:0] analog_io,
+
+    // Clock independiente
+    input user_clock2,
+
+    // IRQ
+    output [2:0] user_irq
+);
+
+    //========================================================
+    // CONFIGURACIÓN DE IO (no usados)
+    //========================================================
+    assign io_out = {`MPRJ_IO_PADS{1'b0}};
+    assign io_oeb = {`MPRJ_IO_PADS{1'b1}};
+    assign user_irq = 3'b000;
+
+    //========================================================
+    // REGISTROS WISHBONE
+    //========================================================
+    reg        start_logging_reg;
+    reg        power_fail_reg;
+    reg [7:0]  sensor_data_reg;
+
+    wire wb_valid = wbs_cyc_i & wbs_stb_i;
+
+    always @(posedge wb_clk_i) begin
+        if (wb_rst_i) begin
+            wbs_ack_o <= 0;
+            wbs_dat_o <= 0;
+            start_logging_reg <= 0;
+            power_fail_reg <= 0;
+            sensor_data_reg <= 0;
+        end else begin
+            wbs_ack_o <= 0;
+
+            if (wb_valid && !wbs_ack_o) begin
+                wbs_ack_o <= 1;
+
+                if (wbs_we_i) begin
+                 case (wbs_adr_i[3:2]) // direcciones simples
+                        2'b00: start_logging_reg <= wbs_dat_i[0];
+                        2'b01: power_fail_reg    <= wbs_dat_i[0];
+                        2'b10: sensor_data_reg   <= wbs_dat_i[7:0];
+                    endcase
+                end else begin
+                    case (wbs_adr_i[3:2])
+                        2'b00: wbs_dat_o <= {31'b0, start_logging_reg};
+                        2'b01: wbs_dat_o <= {31'b0, power_fail_reg};
+                        2'b10: wbs_dat_o <= {24'b0, sensor_data_reg};
+                        default: wbs_dat_o <= 32'hDEADBEEF;
+                    endcase
+                end
+            end
+        end
+    end
+    
+    //========================================================
+    // LOGIC ANALYZER (override opcional)
+    //========================================================
+    wire start_logging       = (~la_oenb[0]) ? la_data_in[0] : start_logging_reg;
+    wire power_fail_detected = (~la_oenb[1]) ? la_data_in[1] : power_fail_reg;
+    wire [7:0] sensor_data   = (~la_oenb[9:2]) ? la_data_in[9:2] : sensor_data_reg;
+
+    //========================================================
+    // SALIDAS
+    //========================================================
+    wire done_logging;
+    wire fail_safe;
+    wire ack;
+
+    assign la_data_out[0]   = done_logging;
+    assign la_data_out[1]   = fail_safe;
+    assign la_data_out[2]   = ack;
+    assign la_data_out[127:3] = 0;
+    
+    //========================================================
+    // INSTANCIA PRINCIPAL
+    //========================================================
+    secure_top u_secure_top (
+        .clk                 (wb_clk_i),
+        .rst                 (wb_rst_i),
+        .start_logging       (start_logging),
+        .sensor_data         (sensor_data),
+        .power_fail_detected (power_fail_detected),
+        .done_logging        (done_logging),
+        .fail_safe           (fail_safe),
+        .ack                 (ack)
+    );
+
+endmodule
+`default_nettype wire

@@ -14,21 +14,38 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # Caravel user project includes
--v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v
--v $(USER_PROJECT_VERILOG)/rtl/secure_top.v
--v $(USER_PROJECT_VERILOG)/rtl/secure_logger_controller.v
--v $(USER_PROJECT_VERILOG)/rtl/logger_wb_controller.v
--v $(USER_PROJECT_VERILOG)/rtl/aes_xor.v
--v $(USER_PROJECT_VERILOG)/rtl/crc8.v
--v $(USER_PROJECT_VERILOG)/rtl/re_ram_nvm.v
--v $(USER_PROJECT_VERILOG)/rtl/fifo_buffer.v
--v $(USER_PROJECT_VERILOG)/rtl/parity_checker.v
--v $(USER_PROJECT_VERILOG)/rtl/encryptor.v
--v $(USER_PROJECT_VERILOG)/rtl/aes_round.v
--v $(USER_PROJECT_VERILOG)/rtl/aes_key_expansion.v
+# -----------------------------
+# AES (PRIMERO dependencias)
+# -----------------------------
 -v $(USER_PROJECT_VERILOG)/rtl/aes_sbox.v
+-v $(USER_PROJECT_VERILOG)/rtl/aes_key_expansion.v
+-v $(USER_PROJECT_VERILOG)/rtl/aes_round.v
 -v $(USER_PROJECT_VERILOG)/rtl/aes128_core.v
+-v $(USER_PROJECT_VERILOG)/rtl/aes_xor.v
+-v $(USER_PROJECT_VERILOG)/rtl/encryptor.v
+
+# -----------------------------
+# LOGIC CORE
+# -----------------------------
+-v $(USER_PROJECT_VERILOG)/rtl/crc8.v
+-v $(USER_PROJECT_VERILOG)/rtl/parity_checker.v
+-v $(USER_PROJECT_VERILOG)/rtl/fifo_buffer.v
+-v $(USER_PROJECT_VERILOG)/rtl/re_ram_nvm.v
+
+# -----------------------------
+# TMR
+# -----------------------------
 -v $(USER_PROJECT_VERILOG)/rtl/tmr_rdata_voter.v
 -v $(USER_PROJECT_VERILOG)/rtl/tmr_re_ram_nvm_wrapper.v
-//-v $(USER_PROJECT_VERILOG)/../ip/Neuromorphic_X1_32x32/hdl/beh_model/Neuromorphic_X1_Beh.v
--v $(USER_PROJECT_VERILOG)/rtl/NEUROMORPHIC_X1_stub.v
+
+# -----------------------------
+# CONTROL
+# -----------------------------
+-v $(USER_PROJECT_VERILOG)/rtl/logger_wb_controller.v
+-v $(USER_PROJECT_VERILOG)/rtl/secure_logger_controller.v
+-v $(USER_PROJECT_VERILOG)/rtl/secure_top.v
+
+# -----------------------------
+# WRAPPER (SIEMPRE AL FINAL)
+# -----------------------------
+-v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v

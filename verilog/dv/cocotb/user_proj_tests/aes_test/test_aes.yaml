@@ -1,0 +1,4 @@
+name: aes_test
+
+module: user_proj_tests.aes_test.test_aes
+testcase: aes_test
