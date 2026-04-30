@@ -1,1 +1,6 @@
-tests: []
+tests:
+  - name: dummy_aes
+    test: tests.dummy_aes
+    description: "Dummy AES test placeholder"
+    plusargs: ""
+    parameters: {}
