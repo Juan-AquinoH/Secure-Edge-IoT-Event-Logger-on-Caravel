@@ -1,0 +1,21 @@
+{
+  "precheck": {
+    "version": "1.3.2",
+    "timestamp": "2026-05-02T16:08:13.531599+00:00",
+    "pdk": "sky130A",
+    "passed": false,
+    "checks": {
+      "lvs": {
+        "status": "fail",
+        "duration_s": 0.0,
+        "details": "LVS FAILED: couldn't find environment variable $STD_CELL_LIBRARY"
+      },
+      "magic_drc": {
+        "status": "skip",
+        "duration_s": 0,
+        "reason": "optional (use --magic-drc to include)"
+      }
+    },
+    "input_file_hash": "efb836274871507631e107435f74f60d42c06873"
+  }
+}
