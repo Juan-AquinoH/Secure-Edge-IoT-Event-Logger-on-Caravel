@@ -102,8 +102,8 @@ install:
 # Install DV setup
 .PHONY: simenv
 simenv:
-	docker pull chipfoundry/dv:latest
-
+	@echo "Omitiendo docker pull chipfoundry/dv:latest (usando entorno local)."
+	@true
 # Install cocotb docker
 .PHONY: simenv-cocotb
 simenv-cocotb:

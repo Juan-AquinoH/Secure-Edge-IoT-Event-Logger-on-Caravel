@@ -1,12 +1,8 @@
 {
-  "topcell": "user_project_wrapper",
-  "schematic": "verilog/gl/user_project_wrapper.v",
-  "layout": "gds/user_project_wrapper.gds",
-  "netgen_setup": "libs.tech/netgen/sky130A_setup.tcl",
-  "lvs_config": {
-    "run_dir": "lvs/user_project_wrapper",
-    "max_errors": 100
-  },
+  "TOP_SOURCE": "user_project_wrapper",
+  "TOP_LAYOUT": "user_project_wrapper",
+  "LAYOUT_FILE": "gds/user_project_wrapper.gds",
+  "LVS_SPICE_FILES": [],
   "LVS_VERILOG_FILES": [
     "verilog/gl/user_project_wrapper.v"
   ]

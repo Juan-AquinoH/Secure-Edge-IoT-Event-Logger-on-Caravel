@@ -2,12 +2,9 @@ from user_proj_tests.ram_word.ram_word import ram_word
 from user_proj_tests.secure_test1_asserts.secure_test1_asserts import secure_test1_asserts
 from user_proj_tests.secure_test2_asserts.secure_test2_asserts import secure_test2_asserts
 from user_proj_tests.hello_world.hello_world import hello_world
-tests = {
+from user_proj_tests.secure_logger_la.secure_logger_la import secure_logger_la
 
-"test_aes": {
-    "test_module": "user_proj_tests.test_aes.test_aes",
-    "testcase": "test_aes",
-},
+tests = {
     "hello_world": {
         "test_module": "user_proj_tests.hello_world.hello_world",
         "testcase": "hello_world",
@@ -26,5 +23,10 @@ tests = {
     "secure_test2_asserts": {
         "test_module": "user_proj_tests.secure_test2_asserts.secure_test2_asserts",
         "testcase": "secure_test2_asserts",
+    },
+
+    "secure_logger_la": {
+        "test_module": "user_proj_tests.secure_logger_la.secure_logger_la",
+        "testcase": "secure_logger_la",
     },
 }
