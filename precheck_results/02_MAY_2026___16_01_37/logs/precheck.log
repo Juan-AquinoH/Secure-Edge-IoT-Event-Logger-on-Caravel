@@ -1,0 +1,19 @@
+2026-05-02 16:01:37 [INFO] Extracting compressed files in: /tmp/tmpo_9_4xri/repo
+2026-05-02 16:01:37 [INFO] Project type: digital
+2026-05-02 16:01:37 [INFO] GDS hash (user_project_wrapper): efb836274871507631e107435f74f60d42c06873
+2026-05-02 16:01:37 [INFO] Tools: KLayout v0.29.2 | Magic v8.3.471
+2026-05-02 16:01:37 [INFO] PDK: SKY130A unknown
+2026-05-02 16:01:37 [INFO] Running 1 checks: [lvs]
+2026-05-02 16:01:37 [INFO] Loading LVS environment from /tmp/tmpo_9_4xri/repo/lvs/user_project_wrapper/lvs_config.json
+2026-05-02 16:01:37 [WARNING] Missing LVS configuration variable EXTRACT_FLATGLOB
+2026-05-02 16:01:37 [WARNING] Missing LVS configuration variable EXTRACT_ABSTRACT
+2026-05-02 16:01:37 [WARNING] Missing LVS configuration variable EXTRACT_CREATE_SUBCUT
+2026-05-02 16:01:37 [INFO] LVS_FLATTEN: 
+2026-05-02 16:01:37 [INFO] LVS_NOFLATTEN: 
+2026-05-02 16:01:37 [INFO] LVS_IGNORE: 
+2026-05-02 16:01:37 [INFO] LVS_SPICE_FILES: 
+2026-05-02 16:01:37 [INFO] LVS_VERILOG_FILES: /tmp/tmpo_9_4xri/repo/verilog/gl/user_project_wrapper.v
+2026-05-02 16:01:37 [INFO] LAYOUT_FILE: /tmp/tmpo_9_4xri/repo/gds/user_project_wrapper.gds
+2026-05-02 16:01:37 [INFO] Running: run_be_checks --nooeb
+2026-05-02 16:01:37 [INFO] LVS output directory: /tmp/tmpo_9_4xri/repo/precheck_results/02_MAY_2026___16_01_37
+2026-05-02 16:01:37 [ERROR] LVS FAILED (stat=1), see /tmp/tmpo_9_4xri/repo/precheck_results/02_MAY_2026___16_01_37/logs/LVS_check.log
