@@ -1,7 +1,7 @@
 {
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
   "INCLUDE_CONFIGS": [
-    "$LVS_ROOT/tech/$PDK/lvs_config.base.json",
-    "$LVS_ROOT/tech/$PDK/lvs_config.user_project_wrapper.json"
+    "$LVS_ROOT/tech/$PDK/lvs_config.base.json"
   ],
   "TOP_SOURCE": "user_project_wrapper",
   "TOP_LAYOUT": "user_project_wrapper",
