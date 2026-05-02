@@ -1,10 +1,10 @@
 {
   "TOP_SOURCE": "user_project_wrapper",
   "TOP_LAYOUT": "user_project_wrapper",
-  "LAYOUT_FILE": "gds/user_project_wrapper.gds",
+  "LAYOUT_FILE": "$UPRJ_ROOT/gds/user_project_wrapper.gds",
   "LVS_SPICE_FILES": [""],
   "LVS_VERILOG_FILES": [
-    "verilog/gl/user_project_wrapper.v"
+    "$UPRJ_ROOT/verilog/gl/user_project_wrapper.v"
   ],
   "LVS_IGNORE": [""],
   "LVS_FLATTEN": [""],
