@@ -1,0 +1,75 @@
+{
+  "precheck": {
+    "version": "1.3.2",
+    "timestamp": "2026-05-02T13:42:17.114824+00:00",
+    "pdk": "sky130A",
+    "passed": false,
+    "checks": {
+      "topcell_check": {
+        "status": "pass",
+        "duration_s": 4.31
+      },
+      "gpio_defines": {
+        "status": "pass",
+        "duration_s": 1.18
+      },
+      "xor": {
+        "status": "pass",
+        "duration_s": 48.76
+      },
+      "klayout_feol": {
+        "status": "pass",
+        "duration_s": 727.35
+      },
+      "klayout_beol": {
+        "status": "fail",
+        "duration_s": 968.36,
+        "details": "klayout_beol failed (stat=-9), see /tmp/tmpass0y0tk/repo/precheck_results/02_MAY_2026___13_01_49/logs/klayout_beol_check.log"
+      },
+      "klayout_offgrid": {
+        "status": "pass",
+        "duration_s": 440.0
+      },
+      "klayout_met_min_ca_density": {
+        "status": "pass",
+        "duration_s": 116.91
+      },
+      "klayout_pin_label_purposes_overlapping_drawing": {
+        "status": "pass",
+        "duration_s": 87.33
+      },
+      "klayout_zeroarea": {
+        "status": "pass",
+        "duration_s": 17.55
+      },
+      "spike_check": {
+        "status": "pass",
+        "duration_s": 10.43
+      },
+      "illegal_cellname_check": {
+        "status": "pass",
+        "duration_s": 4.47
+      },
+      "lvs": {
+        "status": "fail",
+        "duration_s": 0.02,
+        "details": "LVS FAILED (stat=1), see /tmp/tmpass0y0tk/repo/precheck_results/02_MAY_2026___13_01_49/logs/LVS_check.log"
+      },
+      "oeb": {
+        "status": "fail",
+        "duration_s": 0.02,
+        "details": "OEB report not produced",
+        "report": {
+          "report_relpath": "/tmp/tmpass0y0tk/repo/precheck_results/02_MAY_2026___13_01_49/outputs/reports/cvc.oeb.report",
+          "parse_error": "cvc.oeb.report not produced"
+        }
+      },
+      "magic_drc": {
+        "status": "skip",
+        "duration_s": 0,
+        "reason": "optional (use --magic-drc to include)"
+      }
+    },
+    "input_file_hash": "efb836274871507631e107435f74f60d42c06873"
+  }
+}
