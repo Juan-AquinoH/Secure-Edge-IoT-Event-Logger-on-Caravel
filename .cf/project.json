@@ -1,0 +1,21 @@
+{
+  "precheck": {
+    "version": "1.3.2",
+    "timestamp": "2026-05-03T05:26:17.825436+00:00",
+    "pdk": "sky130A",
+    "passed": false,
+    "checks": {
+      "lvs": {
+        "status": "fail",
+        "duration_s": 1531.31,
+        "details": "LVS FAILED (stat=1), see /tmp/tmprkrkh26s/repo/precheck_results/03_MAY_2026___05_00_45/logs/LVS_check.log"
+      },
+      "magic_drc": {
+        "status": "skip",
+        "duration_s": 0,
+        "reason": "optional (use --magic-drc to include)"
+      }
+    },
+    "input_file_hash": "efb836274871507631e107435f74f60d42c06873"
+  }
+}
