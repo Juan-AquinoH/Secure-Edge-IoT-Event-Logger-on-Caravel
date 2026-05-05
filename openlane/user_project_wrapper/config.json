@@ -20,9 +20,6 @@
     "dir::../../verilog/rtl/aes128_core.v"
   ],
 
-  "IGNORE_DISCONNECTED_MODULES": [
-    "Neuromorphic_X1_wb"
-  ],
 
   "DESIGN_NAME": "user_project_wrapper",
 
