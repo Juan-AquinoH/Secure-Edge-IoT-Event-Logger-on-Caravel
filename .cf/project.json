@@ -765,5 +765,9 @@
       }
     },
     "input_file_hash": "f7ddc2b4607dc8d45d10173806a87334154e4da0"
+  },
+  "project": {
+    "platform_project_id": "42765e34-c028-4280-8a4a-45fbb171330b",
+    "name": "Secure-Edge-IoT-Event-Logger-on-Caravel"
   }
 }
