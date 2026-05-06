@@ -351,17 +351,12 @@ jobs:
 
       - name: Run Precheck
         run: |
-          export INPUT_DIRECTORY=$GITHUB_WORKSPACE
-          export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
-          export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
-          export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
-          export PDKPATH=$PDK_ROOT/sky130A
-
-          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_path ${{ env.PDKPATH }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea lvs"
-
-          cnt=$(grep -c "All Checks Passed" "$OUTPUT")
-          if ! [[ $cnt ]]; then cnt=0; fi
-          if [[ $cnt -eq 1 ]]; then exit 0; fi
+          pip install chipfoundry-cli --quiet
+          cf precheck \
+            --input_directory $GITHUB_WORKSPACE \
+            --output_directory $GITHUB_WORKSPACE/precheck_results \
+            --checks topcell_check,gpio_defines,illegal_cellname_check,xor,klayout_feol,klayout_offgrid,klayout_met_min_ca_density,klayout_pin_label_purposes_overlapping_drawing,klayout_zeroarea,spike_check,lvs,oeb
+          if [ $? -eq 0 ]; then exit 0; fi
           exit 2
 
   STA:
