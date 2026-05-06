@@ -1,0 +1,65 @@
+ gpio/user/analog |   in   |   out  | analog |  oeb min/sim/max  | configuration
+   0 /  0 /       |        |  vssd* |        | vccd*/vccd*/vccd* | FIXED_STD_INPUT_NOPULL 
+   1 /  1 /       |        |  vssd* |        | vccd*/vccd*/vccd* | FIXED_STD_INPUT_NOPULL 
+   2 /  2 /       |        |  vssd* |        | vccd*/vccd*/vccd* | FIXED_STD_INPUT_NOPULL 
+   3 /  3 /       |        |  vssd* |        | vccd*/vccd*/vccd* | FIXED_STD_INPUT_PULLUP 
+   4 /  4 /       |        |  vssd* |        | vccd*/vccd*/vccd* | FIXED_STD_INPUT_NOPULL 
+   5 /  5 /       |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+   6 /  6 /       |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+   7 /  7 /   0   |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+   8 /  8 /   1   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+   9 /  9 /   2   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+  10 / 10 /   3   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+  11 / 11 /   4   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+  12 / 12 /   5   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+  13 / 13 /   6   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+  14 / 14 /   7   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+  15 / 15 /   8   |        |  vssd* |        | vssd*/vssd*/vssd* | USER_STD_BIDIRECTIONAL 2 warnings/errors
+  16 / 16 /   9   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  17 / 17 /  10   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  18 / 18 /  11   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  19 / 19 /  12   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  20 / 20 /  13   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  21 / 21 /  14   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  22 / 22 /  15   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  23 / 23 /  16   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  24 / 24 /  17   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  25 / 25 /  18   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  26 / 26 /  19   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  27 / 27 /  20   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  28 / 28 /  21   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  29 / 29 /  22   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  30 / 30 /  23   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  31 / 31 /  24   |        |      2 |        | vssd*/vssd*/vssd* | USER_STD_OUTPUT 
+  32 / 32 /  25   |      4 |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 
+  33 / 33 /  26   |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+  34 / 34 /  27   |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+  35 / 35 /  28   |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+  36 / 36 /       |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+  37 / 37 /       |        |  vssd* |        | vccd*/vccd*/vccd* | USER_STD_INPUT_NOPULL 1 warnings/errors
+
+*** Detected the following warnings and/or errors: ***
+GPIO  5: Warning: missing user input connection
+GPIO  6: Warning: missing user input connection
+GPIO  7: Warning: missing user input connection
+GPIO  8: Warning: user output fixed at vssd*
+GPIO  8: Warning: bidirectional user oeb is always low - always output mode
+GPIO  9: Warning: user output fixed at vssd*
+GPIO  9: Warning: bidirectional user oeb is always low - always output mode
+GPIO 10: Warning: user output fixed at vssd*
+GPIO 10: Warning: bidirectional user oeb is always low - always output mode
+GPIO 11: Warning: user output fixed at vssd*
+GPIO 11: Warning: bidirectional user oeb is always low - always output mode
+GPIO 12: Warning: user output fixed at vssd*
+GPIO 12: Warning: bidirectional user oeb is always low - always output mode
+GPIO 13: Warning: user output fixed at vssd*
+GPIO 13: Warning: bidirectional user oeb is always low - always output mode
+GPIO 14: Warning: user output fixed at vssd*
+GPIO 14: Warning: bidirectional user oeb is always low - always output mode
+GPIO 15: Warning: user output fixed at vssd*
+GPIO 15: Warning: bidirectional user oeb is always low - always output mode
+GPIO 33: Warning: missing user input connection
+GPIO 34: Warning: missing user input connection
+GPIO 35: Warning: missing user input connection
+GPIO 36: Warning: missing user input connection
+GPIO 37: Warning: missing user input connection
