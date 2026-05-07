@@ -54,15 +54,15 @@ In the current iteration, the silicon implementation focuses on the secure loggi
 
 ## Technical Highlights
 
-| Metric | Target / Behavior | Description |
-|---|---|---|
-| **Event data width** | 8-bit sensor / status events | Low-bandwidth medical samples, flags, handling events, or dose-state indicators. |
-| **Integrity check** | CRC-8 (poly 0x07) | On-chip CRC computed before committing an event. |
-| **Encryption block** | Encryption block 128-bit AES-128 block (implemented in RTL) | (implemented in RTL) |
-| **Power-failure handling** | Fails closed (fail flag asserted) | Any power-fail condition blocks writes and sets an error flag. |
-| **Caravel integration** | Wishbone + GPIO + IRQ | Logger controlled via Wishbone and observable via GPIO / IRQ. |
-| **TMR hardening** | Triplicated critical state + voter | Masks a single upset in the protected logging path. |
-| **Energy strategy** | Indoor-light harvesting ready | Suitable for short NFC bursts and low-duty-cycle medical logging. |
+| Metric                | Target / Behavior                 | Description                                                      |
+|-----------------------|-----------------------------------|------------------------------------------------------------------|
+| Event data width      | 8-bit sensor / status events      | Low-bandwidth medical samples, flags, handling events, or dose-state indicators. |
+| Integrity check       | CRC-8 (poly 0x07)                 | On-chip CRC computed before committing an event.                 |
+| Encryption block      | 128-bit AES-128 block (RTL)       | Event embedded in a 128-bit word and encrypted with a key.      |
+| Power-failure handling| Fails closed (fail flag asserted) | Any power-fail condition blocks writes and sets an error flag.  |
+| Caravel integration   | Wishbone + GPIO + IRQ             | Logger controlled via Wishbone and observable via GPIO / IRQ.   |
+| TMR hardening         | Triplicated critical state + voter| Masks a single upset in the protected logging path.             |
+| Energy strategy       | Indoor-light harvesting ready     | Suitable for short NFC bursts and low-duty-cycle medical logging. |
 
 ---
 Physical implementation notes
@@ -148,6 +148,7 @@ Verification focuses on both block‑level correctness and integration maturity:
 | Caravel user_project_wrapper   | Smoke tests for Wishbone, GPIO and IRQ            | PARTIAL        |
 
 The goal for the next iteration is to expand integration‑level testbenches (e.g., full event capture → AES encrypt → ReRAM commit → readback) and report aggregate pass/fail counts and coverage metrics in the verification section and CI logs.
+
 ## Application Scenarios
 
 ### Secure, Fail-Safe Medical Logging
@@ -273,6 +274,21 @@ Replace the original XOR placeholder description with the current AES‑128 encr
 Add an explicit hardware/BOM concept describing how the Caravel ASIC, ReRAM, MCU and energy‑harvesting elements combine into a deployable product.
 Provide a concise verification status table with block‑level and integration‑level pass/partial status.
 Clarify the neuromorphic IP status for this tape‑out, noting the power‑domain incompatibility between the existing neuromorphic macro and the Caravel/ChipFoundry wrapper rails.
+
+## Indicative BOM and cost
+
+To ground feasibility and cost, the target bill of materials for a first deployment of the secure logger platform is:
+
+| Component class   | Example option                           | Est. unit cost (pilot volume) |
+|-------------------|-------------------------------------------|--------------------------------|
+| ASIC logger die   | Sky130 Caravel-based secure logger ASIC   | USD 5–10 (multi-project wafer)|
+| NVM               | 1–4 Mbit ReRAM / NVM device               | USD 1–3                        |
+| Host MCU / SoC    | Low-power Cortex-M0+ or RISC-V MCU        | USD 1–2                        |
+| Energy harvesting | Perovskia indoor perovskite solar cell    | USD 1–3                        |
+| Energy buffer     | Thin-film battery or supercapacitor       | < USD 1                        |
+| NFC interface     | NFC front-end / antenna                   | USD 1–2                        |
+
+Combined, this yields an estimated **electronics BOM in the USD 10–20 range** for pilot runs, scaling down with volume and integration (e.g., migrating from discrete MCU+NVM to a more integrated SoC). This level of cost is consistent with commercial and edge‑IoT medical packaging, smart caps and clinical accessories.
 ## Documentation
 
 - Neuromorphic ReRAM IP: [Neuromorphic X1 documentation](https://github.com/BMsemi/Neuromorphic_X1_32x32)
