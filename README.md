@@ -36,12 +36,17 @@ Key platform blocks include:
 - **Selective TMR hardening:** protects the critical logging path for radiation-tolerant medical workflows.
 
 ---
+Neuromorphic X1 status for this tape-out
+
+The original concept included the BM Labs Neuromorphic X1 ReRAM macro as both non‑volatile storage and an in‑memory compute block. However, for this tape‑out the neuromorphic macro is not included in the hardened user_project_wrapper due to power–domain incompatibilities between the macro (VSS, VDDA, VDDC1, VDDC2, VDDA2) and the Caravel/ChipFoundry wrapper rails (vccd1, vccd2, vdda1, vdda2, vssd1).
+
+In the current iteration, the silicon implementation focuses on the secure logging controller, AES‑based encryption pipeline, and TMR‑protected ReRAM logging path within the standard Caravel power rails. Neuromorphic X1 remains part of the system‑level vision and simulations, and will be reconsidered in a future revision using a dedicated power‑integration strategy.
 
 ## Key Innovation Points
 
 - **Fail-safe persistent logging:** sensor or therapy events are validated, encrypted, and stored in non-volatile memory so records survive resets and power interruptions.
 - **Error detection via CRC-8:** every event is checked with a CRC-8 polynomial (0x07) before commit.
-- **Secure writes:** payloads are packed into a 128-bit AES-style block (currently modeled as XOR for RTL simulation) before storage.
+- **Secure writes:** payloads are packed into a 128‑bit AES block and encrypted with a dedicated AES‑128 core (aes_sbox, aes_key_expansion, aes_round, aes128_core, encryptor) before storage, replacing the earlier XOR placeholder.
 - **Selective Triple Modular Redundancy (TMR):** critical logging-path state can be triplicated with majority voting to mask radiation-induced upsets without changing the external product behavior.
 - **Complete application fit:** the architecture supports silicon, packaging, NFC-based user interaction, and indoor-light energy harvesting in a practical medical product concept.
 
@@ -53,14 +58,18 @@ Key platform blocks include:
 |---|---|---|
 | **Event data width** | 8-bit sensor / status events | Low-bandwidth medical samples, flags, handling events, or dose-state indicators. |
 | **Integrity check** | CRC-8 (poly 0x07) | On-chip CRC computed before committing an event. |
-| **Encryption block** | 128-bit AES-style block (modeled as XOR) | Event embedded in a 128-bit word and encrypted with a key. |
+| **Encryption block** | Encryption block 128-bit AES-128 block (implemented in RTL) | (implemented in RTL) |
 | **Power-failure handling** | Fails closed (fail flag asserted) | Any power-fail condition blocks writes and sets an error flag. |
 | **Caravel integration** | Wishbone + GPIO + IRQ | Logger controlled via Wishbone and observable via GPIO / IRQ. |
 | **TMR hardening** | Triplicated critical state + voter | Masks a single upset in the protected logging path. |
 | **Energy strategy** | Indoor-light harvesting ready | Suitable for short NFC bursts and low-duty-cycle medical logging. |
 
 ---
+Physical implementation notes
 
+The design is implemented as a Caravel user_project_wrapper with the secure logging logic and AES pipeline synthesized and placed‑and‑routed using OpenLane on SKY130. The OpenLane configuration defines wb_clk_i as the primary clock with a 25 ns target period (~40 MHz) and uses Caravel’s standard power rails: vccd1, vccd2, vdda1, vdda2 for VDD and vssd1, vssa1, vssd2, vssa2 for ground. [file:164]
+
+The power delivery network is generated on met4/met5 with rails enabled and a conservative placement density (around 18%) to preserve routability and IR‑drop margin around the secure logger and ReRAM‑interface blocks. [file:164]
 ## Architecture
 ![Arquitectura](https://github.com/user-attachments/assets/5bf1885d-a2a1-470f-8a1d-809667c5cd96)
 
@@ -126,7 +135,19 @@ make user_project_wrapper
 ```
 
 ---
+Verification status and coverage
 
+Verification focuses on both block‑level correctness and integration maturity:
+
+| Block / level                  | Strategy                                           | Current status |
+|--------------------------------|----------------------------------------------------|----------------|
+| AES‑128 core + encryptor       | RTL testbench with known‑answer vectors           | PASS           |
+| CRC‑8 + parity checker         | RTL unit tests over representative payloads       | PASS           |
+| ReRAM NVM + TMR wrapper        | Behavioral model with targeted fault‑injection sims| PARTIAL        |
+| Secure logger controller (FSM) | System‑level testbench, event and error scenarios | PARTIAL        |
+| Caravel user_project_wrapper   | Smoke tests for Wishbone, GPIO and IRQ            | PARTIAL        |
+
+The goal for the next iteration is to expand integration‑level testbenches (e.g., full event capture → AES encrypt → ReRAM commit → readback) and report aggregate pass/fail counts and coverage metrics in the verification section and CI logs.
 ## Application Scenarios
 
 ### Secure, Fail-Safe Medical Logging
@@ -205,7 +226,6 @@ Intermittent operation is enabled through printed **perovskite solar cells** tha
 - No always-on wireless required — energy is saved for short NFC bursts.
 - Maintenance-friendly operation optimized for intermittent usage.
 
----
 
 ## Use Case Summary
 
@@ -228,7 +248,31 @@ Intermittent operation is enabled through printed **perovskite solar cells** tha
 - **Open-source reproducibility:** the architecture is compatible with Caravel-based prototyping and a documented open-source integration flow.
 
 ---
+Hardware and BOM concept
 
+While this README focuses on the Caravel‑based ASIC integration, the intended deployment includes a concrete hardware stack:
+
+A Sky130 ASIC implementing the secure logger controller, AES‑128 pipeline, CRC‑8, parity checking, FIFO buffering, and TMR‑protected ReRAM interface inside the Caravel user_project_wrapper.
+A non‑volatile ReRAM device (standalone NVM compatible with the re_ram_nvm behavioral model and tmr_re_ram_nvm_wrapper integration) providing persistent storage for encrypted medical events.
+A host MCU or SoC (e.g., low‑power RISC‑V or Cortex‑M0+) acting as a Wishbone master or bridged controller to configure the logger, trigger captures, and read back logs in clinic or field settings.
+Perovskia perovskite solar cells for indoor‑light energy harvesting and a small energy buffer (supercapacitor or thin‑film battery) to sustain intermittent Caravel and ReRAM operation during NFC readout and event bursts.
+This combination provides a realistic bill of materials for commercial and edge‑IoT medical products, aligning the ASIC with deployable devices rather than a purely conceptual platform. Deployment scope and adjacent applications
+
+Beyond the core medical adherence use case, the secure logger architecture naturally extends to:
+
+Cold-chain logging: encrypted, non‑volatile logging of temperature and handling events for pharmaceutical transport and storage, with NFC readout at any handoff point.
+Trial compliance logging: trusted, local records of medication intake, device activations, and visit‑related events in clinical studies, even when connectivity is intermittent.
+Assisted‑care medication monitoring: smart caps and dispensers in home‑care or assisted‑living settings that locally retain adherence and handling history, and expose it securely to clinicians via NFC.
+These adjacent paths are consistent with the secure, low‑power, edge‑IoT profile and the radiation‑tolerant variant for nuclear‑medicine workflows.
+
+README update based on ChipFoundry review
+
+This README has been updated in response to the ChipFoundry Application Design Contest feedback to:
+
+Replace the original XOR placeholder description with the current AES‑128 encryption implementation and document the AES RTL modules used in the design.
+Add an explicit hardware/BOM concept describing how the Caravel ASIC, ReRAM, MCU and energy‑harvesting elements combine into a deployable product.
+Provide a concise verification status table with block‑level and integration‑level pass/partial status.
+Clarify the neuromorphic IP status for this tape‑out, noting the power‑domain incompatibility between the existing neuromorphic macro and the Caravel/ChipFoundry wrapper rails.
 ## Documentation
 
 - Neuromorphic ReRAM IP: [Neuromorphic X1 documentation](https://github.com/BMsemi/Neuromorphic_X1_32x32)
