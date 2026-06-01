@@ -1,0 +1,2 @@
+2026-04-30 18:40:44 [INFO] Extracting compressed files in: /tmp/tmp_42o9rlk/repo
+2026-04-30 18:40:44 [CRITICAL] A single valid GDS was not found. Digital projects need 'gds/user_project_wrapper(.gds/.gds.gz)'. Analog projects need 'gds/user_analog_project_wrapper(.gds/.gds.gz)'.
